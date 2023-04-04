@@ -1,0 +1,177 @@
+<%- include('head') %>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <%- include('header') %>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="ti-settings"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
+            </div>
+            <div class="sidebar-bg-options" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default"></div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <%- include('sidebar') %>
+          <!-- partial -->
+          <div class="main-panel">
+            <div class="content-wrapper">
+              <div class="row">
+                <div class="col-md-12 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Add Therapists</h4>
+                      <p class="card-description">
+                        Enter Therapist Details
+                      </p>
+                      <form class="forms-sample row" method="post" action="/addTherapist" enctype="multipart/form-data">
+                        <div class="form-group col-md-6">
+                          <label>name</label>
+                          <input type="text" class="form-control" name="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>qualification</label>
+                          <input type="text" class="form-control" name="qualification"
+                            placeholder="Enter qualification">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>city</label>
+                          <input type="text" class="form-control" name="city" placeholder="Enter city">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>fee</label>
+                          <input type="text" class="form-control" name="fee" placeholder="Enter fee">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>ProfileImage</label>
+                          <input type="file" class="form-control-file" name="profileImage">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Experience</label>
+                          <input type="text" class="form-control" name="experience" placeholder="Enter experience">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Age</label>
+                          <input type="number" class="form-control" name="age" placeholder="Enter age">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Email</label>
+                          <input type="text" class="form-control" name="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>phone</label>
+                          <input type="text" class="form-control" name="phone" placeholder="Enter Phone">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Languages</label>
+                          <input type="text" class="form-control" name="languages" placeholder="Enter languages">
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2 w-100">Add Therapist</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="table-responsive card-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Profile Image</th>
+                            <th>QUALIFICATION</th>
+                            <th>EXPERIENCE</th>
+                            <th>CITY</th>
+                            <th>AGE</th>
+                            <th>FEE</th>
+                            <th>LANGUAGES</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% let no=0 %>
+                            <% for (let x of therapists) { %>
+                              <% no++ %>
+                                <tr>
+                                  <td><%= no %> </td>
+                                  <td>
+                                    <%= x.name %>
+                                  </td>
+                                  <td><img src="<%= x.profileImage %>" alt=""></td>
+                                  <td>
+                                    <%= x.qualification %>
+                                  </td>
+                                  <td>
+                                    <%= x.experience %>
+                                  </td>
+                                  <td>
+                                    <%= x.city %>
+                                  </td>
+                                  <td>
+                                    <%= x.age %>
+                                  </td>
+                                  <td>
+                                    <%= x.fee %>
+                                  </td>
+                                  <td>
+                                    <%= x.languages %>
+                                  </td>
+                                  <td>
+                                    <%= x.email %>
+                                  </td>
+                                  <td>
+                                    <%= x.phone %>
+                                  </td>
+                                  <td>
+                                    <a href="/editTherapist/<%= x._id %>" class="btn btn-warning">
+                                      Edit
+                                    </a>
+                                  </td>
+                                  <td>
+                                    <a href="/deleteTherapist/<%= x._id %>" class="btn btn-danger">
+                                      Delete
+                                    </a>
+                                  </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <%- include('footer') %>
+              <!-- partial -->
+          </div>
+          <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+  </div>
+
+  <%- include('foot') %>
